@@ -57,6 +57,9 @@ go build -o uniland .
 ./uniland -i
 ```
 
+Пошаговая установка в систему на Windows, Linux (включая Arch) и в Termux
+лежит в `docs/install.md`.
+
 Аргументы и коды возврата повторяют эталон: `-c` проверяет синтаксис,
 `-e` выполняет строку, `-i` открывает REPL, `run -d` печатает токены.
 
@@ -114,6 +117,7 @@ uniland lsp                   # сервер для редактора, обме
 ## Документация
 
 - `docs/guide.md` — курс с нуля: язык, Python, Go и обмен данными между ними.
+- `docs/install.md` — установка на Windows, Linux и Termux.
 - `docs/COMPAT.md` — чем поведение отличается от эталона и почему.
 - `docs/grammar/uniland.ebnf` — грамматика языка.
 
