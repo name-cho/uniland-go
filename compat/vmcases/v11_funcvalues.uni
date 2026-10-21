@@ -1,0 +1,19 @@
+func apply(f, x) { return f(x) }
+let dbl = func(x) { return x * 2 }
+print(apply(dbl, 21))
+let ops = {
+    add: func(a, b) { return a + b },
+    sub: func(a, b) { return a - b }
+}
+print(ops.add(2, 3), ops["sub"](10, 4))
+func outer() {
+    func helper(x) { return x + 1 }
+    return helper
+}
+let h = outer()
+print(h(41))
+print(typeof(dbl), typeof(print))
+let fs = [x => x + 1, x => x * x]
+print(fs[0](1), fs[1](4))
+let chain = (f, g) => x => g(f(x))
+print(chain(x => x + 1, x => x * 10)(2))

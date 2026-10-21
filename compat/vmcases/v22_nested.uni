@@ -1,0 +1,50 @@
+func counter(start) {
+    let n = start
+    func inc(step) {
+        n += step
+        return n
+    }
+    func reset() {
+        n = start
+        return n
+    }
+    return {"inc": inc, "reset": reset}
+}
+let c = counter(10)
+print(c["inc"](1), c["inc"](2), c["reset"](), c["inc"](5))
+
+func isEven(n) {
+    if (n == 0) { return true }
+    return isOdd(n - 1)
+}
+func isOdd(n) {
+    if (n == 0) { return false }
+    return isEven(n - 1)
+}
+print(isEven(10), isOdd(10), isEven(7))
+
+func depth(list) {
+    if (typeof(list) != "array") { return 0 }
+    let best = 0
+    for (x in list) {
+        let d = depth(x)
+        if (d > best) { best = d }
+    }
+    return best + 1
+}
+print(depth([1, [2, [3, [4]]], 5]), depth([]), depth(7))
+
+func makeAdders(n) {
+    let out = []
+    for (let i = 0; i < n; i++) {
+        push(out, (x) => x + i)
+    }
+    return out
+}
+let adders = makeAdders(3)
+print(adders[0](10), adders[1](10), adders[2](10))
+
+func applyTwice(f, v) { return f(f(v)) }
+print(applyTwice(x => x * 3, 2))
+let quad = x => applyTwice(y => y * 2, x)
+print(quad(3))

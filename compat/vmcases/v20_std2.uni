@@ -1,0 +1,34 @@
+let xs = [5, 3, 8, 1]
+print(sort(xs), xs)
+print(reverse(sort(xs)))
+print(map(xs, x => x * 2), filter(xs, x => x > 3))
+print(reduce(xs, (a, b) => a + b, 0))
+print(join(map(filter(xs, x => x % 2 == 1), x => to_string(x)), "+"))
+print(find(xs, x => x > 4), find(xs, x => x > 100))
+print(sum(xs), length(xs), min(xs), max(xs))
+let s = "  UniLand Go  "
+print(trim(s), lowercase(trim(s)), uppercase("ab"))
+print(split("a,b,,c", ","), join(["x", "y", "z"], "|"))
+print(replace("banana", "a", "o"), substring("abcdef", 1, 4))
+print(includes("hello", "ell"), indexOf("hello", "l"), repeat("ab", 2))
+print(slice([1, 2, 3, 4, 5], 1, 3), splice([1, 2, 3, 4], 1, 2))
+let deep = [[1, [2, 3]], {"k": [4]}]
+print(deep[0][1][0], deep[1]["k"][0])
+deep[0][1][1] = 99
+print(deep)
+try {
+    print(min([]))
+} catch (e) {
+    print("min empty:", e)
+}
+try {
+    print(pop([]))
+} catch (e) {
+    print("pop empty:", e)
+}
+try {
+    print(to_number("не число"))
+} catch (e) {
+    print("to_number:", e)
+}
+print(to_number("12"), to_number("1.5"), to_string(7))

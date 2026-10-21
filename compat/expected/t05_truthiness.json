@@ -1,0 +1,8 @@
+{
+  "args": [],
+  "case": "t05_truthiness.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "ложь: number\r\nистина: number\r\nистина: number\r\nложь: string\r\nистина: string\r\nистина: string\r\nложь: array\r\nистина: array\r\nложь: object\r\nистина: object\r\nложь: null\r\nложь: boolean\r\nистина: boolean\r\ntrue true true false\r\nfalse false true\r\n"
+}

@@ -1,0 +1,54 @@
+let lst = [1, 2]
+try {
+    print(lst[9])
+} catch (e) {
+    print("idx:", e)
+}
+try {
+    print(lst["x"])
+} catch (e) {
+    print("idx type:", e)
+}
+let num = 5
+try {
+    print(num.field)
+} catch (e) {
+    print("member:", e)
+}
+try {
+    num.field = 1
+} catch (e) {
+    print("member set:", e)
+}
+try {
+    num[0] = 1
+} catch (e) {
+    print("index set:", e)
+}
+func twoArgs(a, b) { return a }
+try {
+    twoArgs(1)
+} catch (e) {
+    print("arity:", e)
+}
+try {
+    nope()
+} catch (e) {
+    print("undef:", e)
+}
+const k = 1
+try {
+    k = 2
+} catch (e) {
+    print("const:", e)
+}
+try {
+    throw "свой текст"
+} catch (e) {
+    print("throw:", e)
+}
+try {
+    throw 42
+} catch (e) {
+    print("throw num:", typeof(e), e)
+}

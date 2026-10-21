@@ -1,0 +1,8 @@
+{
+  "args": [],
+  "case": "t12_gui.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "catch: GUI недоступен в этой сборке: пересобери с -tags fyne\ncatch: GUI недоступен в этой сборке: пересобери с -tags fyne\ncatch: GUI недоступен в этой сборке: пересобери с -tags fyne\ncatch: GUI недоступен в этой сборке: пересобери с -tags fyne\nпосле gui\n"
+}

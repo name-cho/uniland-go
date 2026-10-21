@@ -1,0 +1,12 @@
+let name = "мир"
+let x = 6
+let o = {name: name}
+print(`привет, {name}!`)
+print(`6*7 = {x * 7}, верх: {uppercase(name)}`)
+print(`литые скобки: {{скобка}}`)
+print(`много
+строк {name}`)
+print(`{o.name}, {x == 6}, {x > 7}`)
+let empty = ""
+print(`[{empty}]`)
+print("не шаблон: ${name}")

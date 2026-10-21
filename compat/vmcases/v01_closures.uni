@@ -1,0 +1,18 @@
+func makeCounter() {
+    let n = 0
+    return func() {
+        n = n + 1
+        return n
+    }
+
+    print("dead")
+}
+let c = makeCounter()
+print(c())
+print(c())
+print(c())
+let n = 100
+let inner = func() {
+    return n + 5
+}
+print(inner())

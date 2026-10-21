@@ -1,0 +1,30 @@
+func search(n) {
+    let i = 0
+    while (true) {
+        try {
+            if (i >= n) { return "не найдено" }
+            i++
+            if (i == 3) {
+                return "нашли " + i
+            }
+        } finally {
+            print("fw", i)
+        }
+        print("tail", i)
+    }
+}
+print(search(3))
+print(search(1))
+func inLoop() {
+    let r = 0
+    for (let k = 0; k < 4; k++) {
+        try {
+            r = r + k
+            if (k == 2) { return r }
+        } finally {
+            print("fl", k)
+        }
+    }
+    return -1
+}
+print(inLoop())

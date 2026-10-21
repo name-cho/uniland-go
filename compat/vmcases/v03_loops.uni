@@ -1,0 +1,22 @@
+let i = 0
+while (i < 100) {
+    i = i + 1
+    if (i % 3 == 0) { continue }
+    if (i > 7) { break }
+    print("i", i)
+}
+let total = 0
+for (let a = 0; a < 5; a++) {
+    for (let b = 0; b < 5; b++) {
+        if (b == 2) { continue }
+        if (a * b > 9) { break }
+        total = total + a * b
+    }
+}
+print("total", total)
+let n = 3
+for (;;) {
+    if (n == 0) { break }
+    n--
+}
+print("n", n)

@@ -1,0 +1,21 @@
+try {
+    gui_alert("привет", "текст")
+} catch (e) {
+    print("catch:", e)
+}
+try {
+    gui_window("title", [{"type": "label", "text": "x"}])
+} catch (e) {
+    print("catch:", e)
+}
+try {
+    gui_ask("вопрос", "как дела?")
+} catch (e) {
+    print("catch:", e)
+}
+try {
+    gui_confirm("подтверди", "точно?")
+} catch (e) {
+    print("catch:", e)
+}
+print("после gui")

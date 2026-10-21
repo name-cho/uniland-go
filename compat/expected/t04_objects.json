@@ -1,0 +1,8 @@
+{
+  "args": [],
+  "case": "t04_objects.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "Аня 21 Питер\r\n[\"name\", \"age\", \"city\"] [\"Аня\", 21, \"Питер\"] [[\"name\", \"Аня\"], [\"age\", 21], [\"city\", \"Питер\"]]\r\ntrue false\r\n{\"a\": 1, \"b\": 2}\r\nАня\r\nname = Аня\r\nage = 21\r\ncity = Питер\r\n5\r\n2\r\n"
+}

@@ -1,0 +1,8 @@
+{
+  "args": [],
+  "case": "t09_output.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "\r\na b 3 true null\r\n1 2 3\r\no1\r\no2\r\n\r\n[INFO] инфо\r\n[DEBUG] отладка\r\n[WARN] предупреждение\r\n[ERROR] ошибка\r\n"
+}

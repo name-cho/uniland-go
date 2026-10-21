@@ -1,0 +1,10 @@
+{
+  "args": [
+    "sample.txt"
+  ],
+  "case": "wordcount.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "Строк:  4\r\nСлов:   8\r\nРазных: 6\r\n"
+}

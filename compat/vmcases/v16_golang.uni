@@ -1,0 +1,24 @@
+let x = 0
+let name = "аня"
+go {
+    uni.SetInt("x", 6 * 7)
+    uni.SetStr("name", strings.ToUpper(uni.GetStr("name")))
+}
+print(x, name)
+func square(n) {
+    return n * n
+}
+go {
+    var s = uni.Call("square", "7")
+    uni.SetStr("sq", s)
+}
+print(sq)
+print(goeval("uni.GetInt(\"x\") + 1"))
+print(goeval("strings.EqualFold(\"Uni\", \"uni\")"))
+goexec("uni.SetStr(\"fromexec\", \"го\")")
+print(fromexec)
+let names = []
+go {
+    uni.SetStr("joined", fmt.Sprintf("%v+%v", uni.GetInt("x"), 1))
+}
+print(joined)

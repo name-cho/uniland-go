@@ -1,0 +1,21 @@
+сумма: 15
+минимум/максимум: 1 5
+сортировка: [1, 2, 3, 4, 5]
+развёрнутый: [5, 4, 3, 2, 1]
+кусок: [4, 3, 2]
+через одну: [0, 2, 4, 6, 8]
+[10, 8, 6, 4, 2] [4, 2] 115
+нашли: 5
+есть ли 7: false индекс 3: 2
+trim: UniLand — это просто
+lower: uniland — это просто
+split: ["a", "b", "c"]
+join: a-b-c
+replace: bonono
+substring: bcd
+includes: true
+json: {"name": "Марк", "tags": ["go", "python"], "active": true}
+обратно: Марк python true
+ключи: ["name", "tags", "active"]
+есть ключ name: true
+тип: object string

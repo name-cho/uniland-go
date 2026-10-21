@@ -1,0 +1,47 @@
+func greet(name) {
+    return `Привет, {name}!`
+}
+
+print(greet("Даша"))
+
+func fact(n) {
+    if (n <= 1) { return 1 }
+    return n * fact(n - 1)
+}
+print("10! =", fact(10))
+
+let square = x => x * x
+print(square(7))
+
+let add = (a, b) => a + b
+print(add(2, 3))
+
+func makeCounter() {
+    let count = 0
+    return () => {
+        count += 1
+        return count
+    }
+}
+
+let tick = makeCounter()
+tick()
+tick()
+print("счётчик:", tick())
+
+func applyTwice(f, value) {
+    return f(f(value))
+}
+print(applyTwice(square, 3))
+
+let ops = {
+    add: (a, b) => a + b,
+    mul: (a, b) => a * b
+}
+print(ops.add(4, 5), ops["mul"](4, 5))
+
+func makeAdder(n) {
+    return x => x + n
+}
+let addTen = makeAdder(10)
+print(addTen(5))

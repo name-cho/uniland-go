@@ -1,0 +1,14 @@
+let u = {name: "Аня", age: 20}
+u.age += 1
+u["city"] = "Питер"
+print(u.name, u["age"], u.city)
+print(keys(u), values(u), entries(u))
+print(has(u, "name"), has(u, "nope"))
+print(merge({a: 1}, {b: 2}))
+print(clone(u).name)
+for (k in u) {
+    print(k, "=", u[k])
+}
+let nested = {x: {y: [1, {z: 5}]}}
+print(nested.x.y[1].z)
+print(length({a: 1, b: 2}))

@@ -1,0 +1,12 @@
+# LF везде, где поведение детерминировано: кейсы golden-тестов обязаны
+# доходить до интерпретатора одинаково на всех ОС (NEWLINE-токен!).
+* text=auto
+*.go   text eol=lf
+*.py   text eol=lf
+*.uni  text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.args text eol=lf
+*.stdin text eol=lf
+*.txt  text eol=lf
+*.mod  text eol=lf

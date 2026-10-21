@@ -1,0 +1,29 @@
+let x = 0
+let name = "аня"
+let bigv = 0
+let pi2 = 0.0
+let okflag = false
+
+go {
+    uni.SetInt("x", 6 * 7)
+    uni.SetStr("name", strings.ToUpper(uni.GetStr("name")))
+    uni.SetFloat("pi2", math.Pi)
+    uni.SetBool("okflag", uni.GetInt("x") == 42)
+    uni.SetBig("bigv", "123456789012345678901234567890")
+}
+print(x, name, pi2, okflag)
+print(bigv)
+print(bigv + 1)
+
+func square(n) {
+    return n * n
+}
+go {
+    var s = uni.Call("square", "7")
+    uni.SetStr("sq", s)
+}
+print(sq)
+
+print(goeval("uni.GetInt(\"x\") + 1"))
+print(goeval("strings.EqualFold(\"Uni\", \"uni\")"))
+print(goeval("fmt.Sprintf(\"<%d>\", 99)"))

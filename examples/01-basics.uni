@@ -1,0 +1,19 @@
+let name = "мир"
+let year = 2026
+let pi = 3.14
+let ok = true
+let nothing = null
+
+print("Привет,", name)
+print(`Привет, {name}! Сейчас {year} год.`)
+print(`Числа: {1 + 2 * 3}, {2 ^ 10}, {7 / 2}`)
+print(typeof(name), typeof(year), typeof(pi), typeof(ok), typeof(nothing))
+
+let a = 10
+let b = 3
+print(a + b, a - b, a * b, a / b, a % b, a ^ b)
+print(a > b, a >= 10, a == 10, a != b)
+print(!ok, -a)
+print("строка" + " склеена")
+print([1, 2] + [3])
+print(to_number("42"), to_string(42), to_boolean(1))

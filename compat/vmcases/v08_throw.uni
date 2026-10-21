@@ -1,0 +1,32 @@
+try {
+    throw {code: 7, msg: "объект"}
+} catch (e) {
+    print("число/объект:", e)
+}
+try {
+    throw 42
+} catch (e) {
+    print("число:", e)
+}
+try {
+    print(undefined_var_xyz)
+} catch (e) {
+    print("undef:", e)
+}
+try {
+    const c = 1
+    c = 2
+} catch (e) {
+    print("const:", e)
+}
+try {
+    let l = [1]
+    print(l[5])
+} catch (e) {
+    print("range:", e)
+}
+try {
+    print(1 / 0)
+} catch (e) {
+    print("div:", e)
+}

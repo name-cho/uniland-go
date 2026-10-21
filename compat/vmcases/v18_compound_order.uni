@@ -1,0 +1,45 @@
+let o = {s: "a"}
+o.s += "b"
+print(o.s)
+o.s += "c"
+print(o.s)
+
+let a = ["x"]
+a[0] += "y"
+print(a[0])
+
+let nums = [10, 3]
+nums[0] -= 4
+nums[1] = nums[1] ^ 2
+print(nums)
+
+let box = {n: 7}
+box.n /= 2
+print(box.n)
+
+func arr() {
+    print("arr")
+    return [1, 2]
+}
+arr()[0] += 10
+
+let lst = [5]
+func pos() {
+    print("pos")
+    return 0
+}
+lst[pos()] *= 3
+print(lst)
+
+func obj() {
+    print("obj")
+    return {n: 1}
+}
+obj().n += 1
+
+let c = [1, 2]
+c[1]++
+print(c)
+let d = {v: 5}
+d.v--
+print(d.v)

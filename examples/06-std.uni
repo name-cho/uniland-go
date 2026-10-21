@@ -1,0 +1,35 @@
+let numbers = [4, 1, 3, 2, 5]
+
+print("сумма:", sum(numbers))
+print("минимум/максимум:", min(numbers), max(numbers))
+print("сортировка:", sort(numbers))
+print("развёрнутый:", reverse(numbers))
+print("кусок:", slice(numbers, 1, 4))
+print("через одну:", range(0, 10, 2))
+
+let doubled = map(numbers, n => n * 2)
+let even = filter(numbers, n => n % 2 == 0)
+let totalAll = reduce(numbers, (acc, n) => acc + n, 100)
+print(doubled, even, totalAll)
+
+print("нашли:", find(numbers, n => n > 3))
+print("есть ли 7:", includes(numbers, 7), "индекс 3:", indexOf(numbers, 3))
+
+let line = "  UniLand — это просто  "
+print("trim:", trim(line))
+print("lower:", lowercase(trim(line)))
+print("split:", split("a,b,c", ","))
+print("join:", join(["a", "b", "c"], "-"))
+print("replace:", replace("banana", "a", "o"))
+print("substring:", substring("abcdef", 1, 4))
+print("includes:", includes("hello", "ell"))
+
+let user = {name: "Марк", tags: ["go", "python"], active: true}
+let asJSON = stringify_json(user)
+print("json:", asJSON)
+let back = parse_json(asJSON)
+print("обратно:", back.name, back.tags[1], back.active)
+
+print("ключи:", keys(user))
+print("есть ключ name:", has(user, "name"))
+print("тип:", typeof(user), typeof(asJSON))

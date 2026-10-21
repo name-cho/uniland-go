@@ -1,0 +1,11 @@
+print(typeof(1), typeof(1.5), typeof("x"), typeof(true), typeof(null))
+print(typeof([1]), typeof({a: 1}), typeof(x => x))
+print(to_string(42), to_string(true), to_string(null))
+print(to_number("42"), to_number("3.5"))
+try { print(to_number("")) } catch (e) { print("to_number(''):", e) }
+print(to_boolean(0), to_boolean(""), to_boolean([]))
+print(is_number(1), is_string("x"), is_array([]), is_object({}))
+print(is_boolean(true), is_null(null), is_function(x => x))
+print(parse_json("[1, 2, {\"k\": null}]"))
+print(stringify_json({a: 1, b: [2, 3]}))
+print(stringify_json({a: 1, b: [2, 3]}, 2))

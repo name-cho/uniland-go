@@ -1,0 +1,8 @@
+{
+  "args": [],
+  "case": "t10_python.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "4 42 из питона строка с } скобкой внутри\r\n1267650600228229401496703205376\r\nab\r\npy-major: 3\r\nnull\r\n"
+}

@@ -1,0 +1,8 @@
+{
+  "args": [],
+  "case": "t08_types.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "number number string boolean null\r\narray object function\r\n42 true null\r\n42 3.5\r\nto_number(''): Cannot convert  to number\r\nfalse false false\r\ntrue true true true\r\ntrue true true\r\n[1, 2, {\"k\": null}]\r\n{\"a\": 1, \"b\": [2, 3]}\r\n{\r\n  \"a\": 1,\r\n  \"b\": [\r\n    2,\r\n    3\r\n  ]\r\n}\r\n"
+}

@@ -1,0 +1,15 @@
+func fib(n) {
+    if (n < 2) { return n }
+    return fib(n - 1) + fib(n - 2)
+}
+print(fib(20))
+func fact(n) {
+    if (n <= 1) { return 1 }
+    return n * fact(n - 1)
+}
+print(fact(25))
+print(2 ^ 100)
+let big = fact(30)
+print(big % 1000007, big / 3, big == big)
+print(big > 2 ^ 100)
+print(2 ^ 100 + 1)

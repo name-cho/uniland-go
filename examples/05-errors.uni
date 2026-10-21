@@ -1,0 +1,53 @@
+func divide(a, b) {
+    if (b == 0) {
+        throw "на ноль делить нельзя"
+    }
+    return a / b
+}
+
+try {
+    print(divide(10, 2))
+    print(divide(1, 0))
+} catch (e) {
+    print("поймали:", e)
+} finally {
+    print("блок finally выполнился")
+}
+
+try {
+    let data = parse_json("{не json}")
+    print(data)
+} catch (e) {
+    print("json:", e)
+}
+
+func safeRead(path) {
+    try {
+        return read_file(path)
+    } catch (e) {
+        return "файла нет: " + to_string(e)
+    }
+}
+
+print(safeRead("нет-такого-файла.txt"))
+
+try {
+    print([1, 2][5])
+} catch (e) {
+    print("индекс:", e)
+}
+
+try {
+    print(unknown_function(1))
+} catch (e) {
+    print("имя:", e)
+}
+
+func withFinally() {
+    try {
+        return "из try"
+    } finally {
+        print("finally перед возвратом")
+    }
+}
+print(withFinally())

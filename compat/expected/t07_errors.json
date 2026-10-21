@@ -1,0 +1,8 @@
+{
+  "args": [],
+  "case": "t07_errors.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "поймали: бум\r\nfinally 1\r\nчисло: 42\r\nобъект: {\"code\": 7, \"msg\": \"объект\"}\r\nвнутренний finally\r\nвнешняя: внутренняя\r\nфайл: Failed to read file: [Errno 2] No such file or directory: 'точно-нет-такого-файла.xt'\r\n3\r\ndiv: деление на ноль\r\n"
+}

@@ -1,0 +1,18 @@
+let o = {alpha: 1, "beta": 2, beta3: 3}
+print(o.alpha, o["beta"], o.beta3)
+o.gamma = 4
+o["delta"] = 5
+print(o)
+let arr = [1, 2, 3]
+print(arr[-1], arr[-3])
+
+try {
+    arr[-1] = 99
+} catch (e) {
+    print("neg assign:", e)
+}
+print(arr)
+o.list = [1, 2]
+o.list[0] += 10
+print(o.list)
+print(o.missing)

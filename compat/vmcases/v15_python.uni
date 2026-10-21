@@ -1,0 +1,23 @@
+let n = 5
+python {
+    uni.n = uni.n * 2
+}
+print("после py:", n)
+python {
+    a = 1
+    b = 2
+    uni.sum_s = str(a + b)
+    uni.len_n = len(str(uni.n))
+}
+print("py-state:", n, sum_s, len_n)
+func pydabl(v) { return v * v }
+python {
+    print("python print 1")
+    print("python print 2")
+    uni.sq_s = str(uni.call("pydabl", 6))
+}
+print("sq:", sq_s)
+print(pyeval("6*7"))
+pyexec("uni.fromexec = 3")
+print(fromexec)
+print(n, len_n)

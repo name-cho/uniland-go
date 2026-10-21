@@ -1,0 +1,13 @@
+print(1 == 1.0, "1" == 1, null == null, null == 0, false == 0, true == 1)
+print([] == [], {"1": 1} == {"1": 1}, "a" == "a")
+print("b" > "a", 10 > 9, -1 < 0, "переполнение" + 1)
+print(to_number("42"), to_number("2.5"))
+try {
+    print(to_number("bad"))
+} catch (e) {
+    print("to_number bad:", e)
+}
+print(to_string(123), to_string(null), to_string(true))
+print(typeof(1), typeof(1.5), typeof("x"), typeof(true), typeof(null), typeof([]), typeof({}), typeof(print))
+print(1 + "x", "x" + 1, [1] + [2], [] + "s")
+print(-(-5), -5.5)

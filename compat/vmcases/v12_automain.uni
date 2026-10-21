@@ -1,0 +1,9 @@
+let ready = "declared-before-main"
+func main() {
+    print("main:", ready)
+    helper()
+}
+func helper() {
+    print("helper ok")
+}
+print("до main")

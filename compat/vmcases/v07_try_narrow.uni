@@ -1,0 +1,37 @@
+func safe(f) {
+    try {
+        return f()
+    } catch (e) {
+        print("ошибка:", e)
+        return "none"
+    } finally {
+        print("finally")
+    }
+}
+print(safe(func() { return 42 }))
+print(safe(func() { throw "бум" }))
+try {
+    try {
+        throw "первая"
+    } catch (e) {
+        throw "вторая: " + e
+    } finally {
+        print("внутренний finally")
+    }
+} catch (e2) {
+    print("снаружи:", e2)
+}
+func loopTest() {
+    let out = []
+    for (let i = 0; i < 5; i++) {
+        try {
+            if (i == 1) { continue }
+            if (i == 3) { break }
+            push(out, i)
+        } finally {
+            print("f", i)
+        }
+    }
+    return out
+}
+print(loopTest())

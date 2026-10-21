@@ -1,0 +1,15 @@
+func double(n) {
+    return n * 2
+}
+python {
+    import statistics
+    uni.mean = statistics.mean([1, 2, 3, 10])
+    uni.doubled = uni.call("double", 21)
+    uni.text = "из питона"
+    uni.braced = "строка с } скобкой внутри"
+}
+print(mean, doubled, text, braced)
+print(pyeval("2 ** 100"))
+print(pyeval("'a' + 'b'"))
+pyexec("import sys; print('py-major:', sys.version_info[0])")
+print(py("1 + 41"))

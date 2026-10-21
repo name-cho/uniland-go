@@ -1,0 +1,26 @@
+try {
+    throw "бум"
+} catch (e) {
+    print("поймали:", e)
+} finally {
+    print("finally 1")
+}
+try { throw 42 } catch (e) { print("число:", e) }
+try { throw {code: 7, msg: "объект"} } catch (e) { print("объект:", e) }
+try {
+    try { throw "внутренняя" } finally { print("внутренний finally") }
+} catch (e) {
+    print("внешняя:", e)
+}
+try {
+    let bad = read_file("точно-нет-такого-файла.xt")
+    print("не должно дойти до печати:", bad)
+} catch (e) {
+    print("файл:", e)
+}
+func div(a, b) {
+    if (b == 0) { throw "деление на ноль" }
+    return a / b
+}
+print(div(9, 3))
+try { div(1, 0) } catch (e) { print("div:", e) }

@@ -1,0 +1,8 @@
+{
+  "args": [],
+  "case": "t01_numbers.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "14\r\n1024\r\n1267650600228229401496703205376\r\n3.5\r\n1\r\n3\r\n5\r\n3 0.30000000000000004\r\n3.75\r\n1\r\n1 9\r\n7 3 4\r\n2.57 3\r\n1.4142135623730951 256\r\ntrue true true\r\n"
+}

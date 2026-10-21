@@ -1,0 +1,28 @@
+func fact(n) {
+    if (n <= 1) { return 1 }
+    return n * fact(n - 1)
+}
+print(fact(10))
+
+func adder(step) { return x => x + step }
+let add10 = adder(10)
+print(add10(5), adder(1)(2))
+
+let compose = (f, g) => x => f(g(x))
+print(compose(x => x + 1, x => x * 2)(5))
+
+func counter() {
+    let c = 0
+    return () => { c += 1; return c }
+}
+let tick = counter()
+tick()
+tick()
+print(tick())
+
+let anon = (a, b) => a * b
+print(anon(6, 7))
+
+func main() {
+    print("main запущен автоматически")
+}

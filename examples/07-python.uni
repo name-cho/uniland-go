@@ -1,0 +1,38 @@
+let counter = 10
+
+python {
+    import math
+    uni.sqrt2 = round(math.sqrt(2), 4)
+    uni.counter = uni.counter + 5
+}
+
+print("counter:", counter, "sqrt2:", sqrt2)
+
+func double(n) {
+    return n * 2
+}
+
+python {
+    uni.doubled = uni.call("double", 21)
+}
+
+print("doubled:", doubled)
+
+print(pyeval("2 ** 10"))
+print(pyeval("'py' + 'thon'"))
+print(py("1 + 41"))
+
+pyexec("import math; print('pi:', round(math.pi, 2))")
+
+python {
+    words = ["раз", "два", "три"]
+    uni.words_upper = [w.upper() for w in words]
+}
+
+print(words_upper)
+
+python {
+    uni.has_math = "math" in globals()
+}
+
+print("math уже импортирован:", has_math)

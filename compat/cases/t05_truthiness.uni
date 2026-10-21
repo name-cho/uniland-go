@@ -1,0 +1,10 @@
+let vals = [0, 1, -1, "", "0", "a", [], [0], {}, {a: 1}, null, false, true]
+for (v in vals) {
+    if (v) {
+        print("истина:", typeof(v))
+    } else {
+        print("ложь:", typeof(v))
+    }
+}
+print("" == "", 0 == false, 1 == true, "1" == 1)
+print(1 == "1", null == false, [] == [])

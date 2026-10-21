@@ -1,0 +1,39 @@
+let total = 0
+let log = []
+
+func addToTotal(x) {
+    total = total + x
+    push(log, "uniland:" + to_string(total))
+    return total
+}
+
+python {
+    uni.py_value = 10
+    uni.py_note = "число из Python"
+}
+
+go {
+    uni.SetInt("total", uni.GetInt("total") + uni.GetInt("py_value"))
+}
+
+print("после Python и Go:", total)
+print(py_note)
+
+go {
+    r := uni.Call("addToTotal", "5")
+    uni.SetStr("go_saw", r)
+}
+print("Go увидел:", go_saw)
+
+python {
+    uni.py_saw = uni.call("addToTotal", 7)
+}
+print("Python увидел:", py_saw)
+
+python {
+    py_total = uni.total
+    go_total = uni.get("total") if False else py_total
+}
+
+print("итог:", total)
+print("журнал:", log)

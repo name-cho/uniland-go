@@ -1,0 +1,18 @@
+let who = "мир"
+print("привет, " + who)
+print(`{who} = {{{who}}}`)
+print(`много
+строк подряд`)
+print("таб\tи\nперевод")
+print("hello"[0], "hello"[4])
+print(uppercase("ПрИвЕт"), lowercase("ПрИвЕт"))
+print(trim("  x  "))
+print(split("a,b,,c", ","))
+print(join(["x", "y"], "-"))
+print(replace("banana", "a", "o"))
+print(substring("hello", 1, 4), substring("hello", 2))
+print(length("привет"))
+print(includes("hello", "ell"), indexOf("hello", "l"), indexOf("hello", "z"))
+print(startswith("hello", "he"), endswith("hello", "lo"))
+print(repeat("ab", 3))
+print(char_code("A"), from_char_code(66))

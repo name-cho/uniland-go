@@ -1,0 +1,73 @@
+let trace = []
+func mark(tag) {
+    push(trace, tag)
+    return tag
+}
+
+for (let i = 0; i < 4; i++) {
+    try {
+        try {
+            if (i == 2) { break }
+            mark("i" + to_string(i))
+        } finally {
+            mark("in" + to_string(i))
+        }
+    } finally {
+        mark("out" + to_string(i))
+    }
+}
+print(trace)
+trace = []
+
+for (let i = 0; i < 3; i++) {
+    try {
+        if (i == 1) { throw "skip" }
+        mark("ok" + to_string(i))
+    } catch (e) {
+        mark("caught:" + e)
+        continue
+    } finally {
+        mark("fin" + to_string(i))
+    }
+}
+print(trace)
+trace = []
+
+func f(n) {
+    try {
+        try {
+            if (n > 1) { return "big:" + to_string(n) }
+            throw "small"
+        } catch (e) {
+            return "caught:" + e
+        } finally {
+            mark("inner-finally")
+        }
+    } finally {
+        mark("outer-finally")
+    }
+}
+print(f(3), f(1))
+print(trace)
+
+let hits = 0
+for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+        if (j == 1) { break }
+        hits++
+    }
+}
+print(hits)
+
+func g() {
+    try {
+        return "try"
+    } finally {
+        throw "finally wins"
+    }
+}
+try {
+    print(g())
+} catch (e) {
+    print("g:", e)
+}

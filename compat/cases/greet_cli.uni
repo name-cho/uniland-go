@@ -1,0 +1,10 @@
+let name = input("Введи своё имя: ")
+
+if (length(trim(name)) == 0) {
+    print("Имя пустое — ну и ладно, привет, незнакомец!")
+} else {
+    print(`Привет, {trim(name)}! Рад знакомству.`)
+}
+
+let age = input("Сколько тебе лет? ")
+print(`Через год тебе будет {to_number(age) + 1}.`)

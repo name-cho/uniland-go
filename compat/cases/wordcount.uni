@@ -1,0 +1,27 @@
+let files = argv()
+if (length(files) == 0) {
+    print("Использование: uniland run examples/wordcount.uni <файл>")
+    exit(1)
+}
+
+let path = files[0]
+if (!file_exists(path)) {
+    print(`Файл не найден: {path}`)
+    exit(1)
+}
+
+let text = read_file(path)
+let lines = split(text, "\n")
+let words = split(lowercase(text), " ")
+
+let freq = {}
+for (w in words) {
+    let key = trim(w)
+    if (length(key) > 0) {
+        if (has(freq, key)) { freq[key] += 1 } else { freq[key] = 1 }
+    }
+}
+
+print(`Строк:  {length(lines)}`)
+print(`Слов:   {length(words)}`)
+print(`Разных: {length(keys(freq))}`)

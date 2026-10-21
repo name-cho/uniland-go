@@ -1,0 +1,18 @@
+let log = []
+func blow(tag, val) {
+    push(log, tag)
+    return val
+}
+print(blow("a", false) && blow("b", true))
+print(blow("c", true) && blow("d", 7))
+print(blow("e", true) || blow("f", false))
+print(blow("g", false) || blow("h", "т"))
+print(log)
+if (blow("cond", "")) {
+    print("пустая строка истинна")
+} else {
+    print("пустая строка ложна")
+}
+print(!0, !1, !"", ![], !{}, !null)
+print(0 || "fallback", "" || "fallback")
+print(1 && 2, null && 2)

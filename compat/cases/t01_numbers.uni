@@ -1,0 +1,25 @@
+print(2 + 3 * 4)
+print(2 ^ 10)
+print(2 ^ 100)
+print(7 / 2)
+print(7 % 3)
+print(10 % 3.5)
+print(-(-5))
+print(2.5 + 0.5, 0.1 + 0.2)
+let n = 5
+n += 3
+n *= 2
+n -= 1
+n /= 4
+n %= 4
+print(n)
+let m = 0
+m++
+m++
+m--
+print(m)
+print(min(3, 1, 2), max(4, 9, 2))
+print(abs(-7), floor(3.7), ceil(3.2))
+print(round(2.567, 2), round(2.567))
+print(sqrt(2), pow(2, 8))
+print(3 < 5 && 5 <= 5, 1 == 2 || 2 > 1, !false)

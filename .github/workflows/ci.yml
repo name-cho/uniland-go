@@ -1,0 +1,55 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+
+      - name: Set up Python (для t10 python-блоков)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Test (golden-снапшоты коммитятся — питон не нужен, кроме t10)
+        run: go test -count=1 ./...
+
+      - name: Test (tree-walk: UNILAND_TREEWALK=1, второй движок)
+        run: go test -count=1 ./...
+        env:
+          UNILAND_TREEWALK: '1'
+
+      - name: Build
+        run: go build -o uniland-go${{ matrix.os == 'windows-latest' && '.exe' || '' }} .
+
+      - name: Smoke (selftest зелёный)
+        run: ./uniland-go${{ matrix.os == 'windows-latest' && '.exe' || '' }} run compat/cases/selftest.uni
+
+  gui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+      - name: Зависимости Fyne (X11/GL)
+        run: sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev xorg-dev
+      - name: Build -tags fyne
+        run: go build -tags fyne ./...

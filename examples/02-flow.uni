@@ -1,0 +1,34 @@
+let score = 73
+
+if (score >= 90) {
+    print("отлично")
+} else if (score >= 70) {
+    print("хорошо")
+} else {
+    print("надо повторить")
+}
+
+let i = 0
+while (i < 5) {
+    i++
+    if (i == 2) { continue }
+    if (i == 4) { break }
+    print("шаг", i)
+}
+
+for (let n = 1; n <= 3; n++) {
+    print("for", n)
+}
+
+for (item in ["a", "b", "c"]) {
+    print("for-in", item)
+}
+
+for (ch in "кот") {
+    print("буква", ch)
+}
+
+let user = {name: "Аня", age: 30}
+for (key in user) {
+    print("поле", key, "=", user[key])
+}

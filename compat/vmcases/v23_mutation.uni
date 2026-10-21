@@ -1,0 +1,57 @@
+let a = [1, 2]
+let b = a
+push(b, 3)
+print(a, b, a == b)
+
+let m = {"x": 1}
+let n = m
+n["y"] = 2
+print(m, n)
+
+func mutate(lst, obj) {
+    push(lst, 99)
+    obj["touched"] = true
+    return length(lst)
+}
+print(mutate(a, m), a, m)
+
+func noMutate(x) {
+    x = x + 1
+    return x
+}
+let num = 1
+print(noMutate(num), num)
+
+func replaceAll(lst, from, to) {
+    for (let i = 0; i < length(lst); i++) {
+        if (lst[i] == from) { lst[i] = to }
+    }
+    return lst
+}
+print(replaceAll([1, 2, 1, 3], 1, 0))
+
+let rows = []
+for (let i = 0; i < 3; i++) {
+    push(rows, [i, i * i])
+}
+print(rows, rows[2][1])
+
+let grid = [[0, 0], [0, 0]]
+for (let r = 0; r < 2; r++) {
+    for (let c = 0; c < 2; c++) {
+        grid[r][c] = r * 2 + c
+    }
+}
+print(grid)
+
+let shared = {"count": 0}
+func bump(o) {
+    o["count"] += 1
+    return o["count"]
+}
+print(bump(shared), bump(shared), shared)
+
+for (k in m) {
+    m[k] = "зн:" + to_string(m[k])
+}
+print(m)

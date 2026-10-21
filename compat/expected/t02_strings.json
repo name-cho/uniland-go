@@ -1,0 +1,8 @@
+{
+  "args": [],
+  "case": "t02_strings.uni",
+  "exit": 0,
+  "stderr": "",
+  "stdin": "",
+  "stdout": "привет, мир\r\nмир = {мир}\r\nмного\r\nстрок подряд\r\nтаб\tи\r\nперевод\r\nh o\r\nПРИВЕТ привет\r\nx\r\n[\"a\", \"b\", \"\", \"c\"]\r\nx-y\r\nbonono\r\nell llo\r\n6\r\ntrue 2 -1\r\ntrue true\r\nababab\r\n65 B\r\n"
+}

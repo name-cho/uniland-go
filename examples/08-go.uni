@@ -1,0 +1,48 @@
+let n = 5
+let name = "uniland"
+let pi = 3.14159
+let big_string = to_string(2 ^ 100)
+
+go {
+    uni.SetInt("n", uni.GetInt("n") * 3)
+}
+print("n после go:", n)
+
+go {
+    uni.SetStr("greeting", "привет, " + strings.ToUpper(uni.GetStr("name")))
+}
+print(greeting)
+
+func triple(x) {
+    return x * 3
+}
+
+go {
+    result := uni.Call("triple", "7")
+    uni.SetStr("triple_s", result)
+}
+print("triple:", triple_s)
+
+go {
+    uni.SetFloat("half_pi", uni.GetFloat("pi") / 2)
+}
+print("pi/2:", half_pi)
+
+print("goeval:", goeval("42 * 2"))
+print("goeval string:", goeval(`strings.ToUpper("go")`))
+
+go {
+    sum := 0
+    for i := 1; i <= 10; i++ {
+        sum += i
+    }
+    uni.SetInt("go_sum", int64(sum))
+}
+print("сумма 1..10 из Go:", go_sum)
+
+go {
+    s := uni.GetStr("big_string")
+    uni.SetStr("big_len", strconv.Itoa(len(s)))
+}
+print("длина 2^100:", big_len)
+

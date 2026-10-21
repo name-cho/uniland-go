@@ -1,0 +1,71 @@
+try {
+    try {
+        throw "a"
+    } catch (e) {
+        print("inner catch:", e)
+        throw "b"
+    }
+} catch (e) {
+    print("outer catch:", e)
+}
+
+func f() {
+    try {
+        try {
+            return "from try"
+        } finally {
+            print("f1")
+        }
+    } finally {
+        print("f2")
+    }
+}
+print(f())
+
+for (let i = 0; i < 3; i++) {
+    try {
+        if (i == 1) {
+            continue
+        }
+        print("body", i)
+    } finally {
+        print("fin", i)
+    }
+}
+print("after loop")
+
+func g() {
+    try {
+        return "try"
+    } finally {
+        return "finally"
+    }
+}
+print(g())
+
+try {
+    try {
+        try {
+            throw "deep"
+        } catch (e) {
+            throw e + "1"
+        }
+    } catch (e) {
+        throw e + "2"
+    }
+} catch (e) {
+    print("top:", e)
+}
+
+func h() {
+    try {
+        throw "first"
+    } finally {
+        throw "second"
+    }
+}
+try {
+    h()
+} catch (e) {
+    print("got:", e)
+}

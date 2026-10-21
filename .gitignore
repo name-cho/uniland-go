@@ -1,0 +1,14 @@
+# билд-артефакты
+uniland-go
+uniland-go.exe
+uni.exe
+*.test
+
+# python
+__pycache__/
+*.pyc
+
+# локальный мусор
+*.log
+.DS_Store
+Thumbs.db

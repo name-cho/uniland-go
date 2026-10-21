@@ -1,0 +1,106 @@
+program        = { newline }, [ statement, { { newline }, statement } ], { newline }, EOF ;
+
+statement      =
+                 functionDecl
+               | ifStatement
+               | forStatement
+               | whileStatement
+               | tryStatement
+               | block
+               | pythonBlock
+               | goBlock
+               | smallStatement
+               ;
+
+smallStatement =
+                 varDecl
+               | returnStatement
+               | breakStatement
+               | continueStatement
+               | throwStatement
+               | assignment
+               | expressionStatement
+               ;
+
+varDecl        = ( "let" | "const" ), identifier, "=", expression ;
+functionDecl   = ( "func" | "fn" ), identifier, paramList, block ;
+
+returnStatement   = "return", [ expression ] ;
+breakStatement    = "break" ;
+continueStatement = "continue" ;
+throwStatement    = "throw", expression ;
+
+ifStatement    = "if", "(", expression, ")", block,
+                 [ "else", ( ifStatement | block ) ] ;
+
+forStatement   = "for", "(", ( forIn | forClassic ), ")", block ;
+forIn          = [ "let" | "const" ], identifier, "in", expression ;
+forClassic     = [ smallStatement ], ";", [ expression ], ";", [ smallStatement ] ;
+
+whileStatement = "while", "(", expression, ")", block ;
+
+tryStatement   = "try", block,
+                 [ "catch", [ "(", identifier, ")" ], block ],
+                 [ "finally", block ] ;
+
+block          = "{", { newline }, [ statement, { { newline }, statement } ], { newline }, "}" ;
+
+pythonBlock    = PYBLOCK ;
+goBlock        = GOBLOCK ;
+
+assignment     = expression, assignOp, expression
+               | expression, ( "++" | "--" ) ;
+
+assignOp       = "=" | "+=" | "-=" | "*=" | "/=" | "%=" ;
+
+expressionStatement = expression ;
+
+expression     = unary, { binaryOp, unary } ;
+
+binaryOp       = "||" | "&&"
+               | "==" | "!="
+               | "<" | "<=" | ">" | ">="
+               | "+" | "-"
+               | "*" | "/" | "%"
+               | "^"
+               ;
+
+unary          = [ "-" | "!" ], postfix ;
+
+postfix        = primary, { callSuffix | indexSuffix | memberSuffix } ;
+callSuffix     = "(", [ expression, { ",", expression } ], ")" ;
+indexSuffix    = "[", expression, "]" ;
+memberSuffix   = ".", identifier ;
+
+primary        =
+                 number
+               | string
+               | template
+               | identifier
+               | "true" | "false" | "null"
+               | functionExpr
+               | "(", expression, ")"
+               | parenArrow
+               | arrayLiteral
+               | objectLiteral
+               ;
+
+functionExpr   = ( "func" | "fn" ), paramList, block ;
+
+parenArrow     = "(", [ identifier, { ",", identifier } ], ")", "=>", arrowBody ;
+arrow1         = identifier, "=>", arrowBody ;
+arrowBody      = block | expression ;
+
+paramList      = "(", [ identifier, { ",", identifier } ], ")" ;
+
+arrayLiteral   = "[", [ expression, { ",", expression } ], "]" ;
+
+objectLiteral  = "{", [ pair, { ",", pair } ], "}" ;
+pair           = ( identifier | string ), ":", expression ;
+
+number         = digit, { digit }, [ ".", digit, { digit } ] ;
+string         = '"', { stringChar }, '"' ;
+template       = "`", { templateChar | "{{" | "}}" | "{", expression, "}" }, "`" ;
+identifier     = letter, { letter | digit | "_" } ;
+
+newline        = NEWLINE ;

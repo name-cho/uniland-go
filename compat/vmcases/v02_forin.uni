@@ -1,0 +1,17 @@
+let items = [10, 20, 30]
+for (x in items) {
+    if (x == 20) { continue }
+    print("x", x)
+}
+for (ch in "абв") {
+    print(ch)
+}
+let obj = {"b": 2, "a": 1, "c": 3}
+for (k in obj) {
+    print(k, obj[k])
+}
+for (n in [1, 2, 3, 4]) {
+    if (n == 3) { break }
+    print("n", n)
+}
+print("после")
