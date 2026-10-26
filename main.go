@@ -35,7 +35,6 @@ type cliArgs struct {
 }
 
 func dispatch(args []string) int {
-
 	if len(args) > 0 && args[0] == "fmt" {
 		return cmdFmt(args[1:])
 	}
@@ -120,7 +119,6 @@ func parseArgs(args []string) cliArgs {
 							continue
 						}
 						if a.runFile == "" && strings.HasPrefix(x, "-") {
-
 							if len(a.scriptArgs) > 0 || a.runDebug {
 								a.scriptArgs = append(a.scriptArgs, x)
 								continue
@@ -147,7 +145,6 @@ func parseArgs(args []string) cliArgs {
 					i++
 				}
 			} else {
-
 				usageErr(fmt.Sprintf("unrecognized arguments: %s", args[i]))
 			}
 		}
@@ -158,7 +155,6 @@ func parseArgs(args []string) cliArgs {
 func readSource(path string) (string, int) {
 	data, err := os.ReadFile(path)
 	if err != nil {
-
 		fmt.Fprintf(os.Stderr, "Error: file '%s' not found.\n", path)
 		return "", 1
 	}

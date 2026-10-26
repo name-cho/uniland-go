@@ -1,21 +1,38 @@
 try {
-    gui_alert("привет", "текст")
+    let win = gui_window("окно", 320, 200)
+    print(win)
 } catch (e) {
     print("catch:", e)
 }
+
 try {
-    gui_window("title", [{"type": "label", "text": "x"}])
+    gui_label("окно", "текст")
 } catch (e) {
     print("catch:", e)
 }
+
 try {
-    gui_ask("вопрос", "как дела?")
+    alert("привет")
 } catch (e) {
     print("catch:", e)
 }
+
 try {
-    gui_confirm("подтверди", "точно?")
+    prompt("вопрос", "ответ")
 } catch (e) {
     print("catch:", e)
 }
+
+try {
+    confirm("точно?")
+} catch (e) {
+    print("catch:", e)
+}
+
+try {
+    pick_file("файл")
+} catch (e) {
+    print("catch:", e)
+}
+
 print("после gui")

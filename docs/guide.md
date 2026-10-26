@@ -484,22 +484,45 @@ print(total, go_saw, py_saw)
 
 ## Окна
 
-В обычной сборке функции `gui_*` есть, но окна не открывают: они
-возвращают ошибку, которую можно поймать. Чтобы получить настоящие окна,
-соберите бинарник с тегом `fyne` (нужен C-компилятор).
+```uniland
+let win = gui_window("Анкета", 420, 260)
+gui_label(win, "Как вас зовут?")
+let name = gui_input(win, "")
+
+gui_button(win, "Отправить", () => {
+    alert("Привет, " + gui_get(name))
+    gui_close(win)
+})
+
+gui_run(win)
+```
+
+Окно собирается по частям: `gui_window` создаёт его, `gui_label`,
+`gui_input`, `gui_button`, `gui_image` и `gui_gif` добавляют элементы,
+`gui_get` читает текст, `gui_set` меняет его, `gui_run` открывает окно и
+запускает цикл событий, `gui_close` закрывает. `gui_on_close` вешает
+обработчик, `gui_video` открывает файл во внешнем плеере.
+
+Цикл событий запускается один раз: после закрытия окна повторный `gui_run`
+возвращает ошибку, поэтому второе окно в одном запуске не открыть.
+
+Системные диалоги: `alert`, `prompt`, `confirm`. Выбор файла или каталога:
+`pick_file`, `pick_save`, `pick_folder`.
+
+Окна работают, когда бинарник собран с cgo: на Windows нужен mingw-w64, на
+Linux — gcc, `libgl1-mesa-dev` и `xorg-dev`. В сборке без cgo
+(`CGO_ENABLED=0`) или с тегом `nogui` функции остаются в реестре, но
+возвращают ошибку, которую можно поймать:
 
 ```uniland
 try {
-    let result = gui_window("Анкета", [
-        {type: "label", text: "Как вас зовут?"},
-        {type: "entry", key: "name"},
-        {type: "check", text: "Согласен", key: "agree"}
-    ])
-    print(result["name"], result["agree"])
+    gui_window("Окно")
 } catch (e) {
     print("окон нет в этой сборке:", e)
 }
 ```
+
+Готовый пример: `uniland run examples/gui/demo.uni`.
 
 ## Форматтер и сервер для редактора
 

@@ -74,9 +74,7 @@ func (in *Interp) execute(node ast.Node) error {
 				if _, ok := err.(*breakSignal); ok {
 					break
 				}
-				if _, ok := err.(*continueSignal); ok {
-
-				} else {
+				if _, ok := err.(*continueSignal); !ok {
 					return err
 				}
 			}
@@ -201,7 +199,6 @@ func (in *Interp) execTryCatch(n *ast.TryCatch) error {
 	}()
 
 	if tryErr == nil {
-
 		if n.Finally != nil {
 			if err := in.execute(n.Finally); err != nil {
 				if e, ok := err.(*unierr.Error); ok {
@@ -215,7 +212,6 @@ func (in *Interp) execTryCatch(n *ast.TryCatch) error {
 
 	ue, caught := tryErr.(*unierr.Error)
 	if !caught {
-
 		if n.Finally != nil {
 			if err := in.execute(n.Finally); err != nil {
 				return err

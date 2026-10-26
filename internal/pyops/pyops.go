@@ -27,8 +27,9 @@ func TypeName(v val.Value) string {
 		return "list"
 	case *val.Map:
 		return "dict"
+	case *val.Opaque:
+		return "object"
 	default:
-
 		return "function"
 	}
 }
@@ -47,6 +48,8 @@ func TypeOf(v val.Value) string {
 		return "array"
 	case *val.Map:
 		return "object"
+	case *val.Opaque:
+		return "unknown"
 	default:
 		return "function"
 	}
@@ -79,6 +82,8 @@ func Inner(v val.Value) string {
 			parts = append(parts, quo(kv.K)+": "+Inner(kv.V))
 		}
 		return "{" + strings.Join(parts, ", ") + "}"
+	case *val.Opaque:
+		return "<object>"
 	default:
 		return "<function>"
 	}
@@ -105,6 +110,8 @@ func Str(v val.Value) string {
 		return string(x)
 	case *val.List, *val.Map:
 		return Inner(v)
+	case *val.Opaque:
+		return "<object>"
 	default:
 		return "<function>"
 	}
@@ -454,7 +461,6 @@ func Equal(a, b val.Value) bool {
 	rb, bNum, bSpec := asRat(b)
 	if aNum && bNum {
 		if aSpec || bSpec {
-
 			return infOrNaNEqual(a, b)
 		}
 		return ra.Cmp(rb) == 0
@@ -569,7 +575,6 @@ func rawLess(a, b val.Value) (bool, error) {
 	rb, bNum, bSpec := asRat(b)
 	if aNum && bNum {
 		if aSpec || bSpec {
-
 			return infNanLess(a, b)
 		}
 		return ra.Cmp(rb) < 0, nil
@@ -603,7 +608,6 @@ func infNanLess(a, b val.Value) (bool, error) {
 	fa, aIsF := a.(val.Float)
 	fb, bIsF := b.(val.Float)
 	if !aIsF || !bIsF {
-
 		if math.IsNaN(float64(fa)) || a == nil {
 			return false, nil
 		}

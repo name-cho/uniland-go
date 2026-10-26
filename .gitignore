@@ -1,14 +1,18 @@
-# билд-артефакты
 uniland-go
 uniland-go.exe
 uni.exe
+uniland
+uniland.exe
+*.exe
 *.test
 
-# python
 __pycache__/
 *.pyc
 
-# локальный мусор
 *.log
 .DS_Store
 Thumbs.db
+
+.gigaide/
+.gigacode/
+.idea/

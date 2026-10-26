@@ -69,7 +69,6 @@ func fileErrText(err error) string {
 		errno, reason = 17, "File exists"
 	}
 	if se, ok := pe.Err.(syscall.Errno); ok && errno == 2 && reason == pe.Err.Error() {
-
 		errno = int(se)
 	}
 	return fmt.Sprintf("[Errno %d] %s: '%s'", errno, reason, pe.Path)
@@ -843,7 +842,6 @@ func bInput(ctx *Ctx) Native {
 		}
 		line, err := ctx.RdIn.ReadString('\n')
 		if err != nil && line == "" {
-
 			return val.Str(""), nil
 		}
 
@@ -853,7 +851,6 @@ func bInput(ctx *Ctx) Native {
 
 func bExit(ctx *Ctx) Native {
 	return func(args []val.Value) (val.Value, error) {
-
 		code := big.NewInt(0)
 		if len(args) > 0 {
 			c, err := pyops.IntOf(args[0])
@@ -890,7 +887,6 @@ func bArgs(ctx *Ctx) Native {
 func All(ctx *Ctx) map[string]Native {
 	rnd := newRandomSource()
 	return map[string]Native{
-
 		"print": bPrint(ctx), "output": bPrint(ctx), "input": bInput(ctx),
 		"log_info": logger(ctx, "[INFO]"), "log_debug": logger(ctx, "[DEBUG]"),
 		"log_warn": logger(ctx, "[WARN]"), "log_error": logger(ctx, "[ERROR]"),
@@ -908,7 +904,7 @@ func All(ctx *Ctx) map[string]Native {
 		}),
 		"is_null": isCheck("is_null", func(v val.Value) bool { return v == nil || isNullValue(v) }),
 		"is_function": isCheck("is_function", func(v val.Value) bool {
-			return !isNumber(v) && !isString(v) && !isList(v) && !isMapVal(v) && !isBoolVal(v) && !isNullValue(v)
+			return !isNumber(v) && !isString(v) && !isList(v) && !isMapVal(v) && !isBoolVal(v) && !isNullValue(v) && !isOpaque(v)
 		}),
 
 		"length": bLength, "split": bSplit, "join": bJoin, "replace": bReplace,
@@ -951,8 +947,19 @@ func All(ctx *Ctx) map[string]Native {
 
 		"system": bSystem, "env": bEnv, "exit": bExit(ctx), "argv": bArgs(ctx),
 
-		"gui_window": bGUIWindow(ctx), "gui_alert": bGUIAlert(ctx),
-		"gui_ask": bGUIAsk(ctx), "gui_confirm": bGUIConfirm(ctx),
+		"gui_window": bGUIWindow(ctx), "gui_label": bGUILabel(ctx),
+		"gui_button": bGUIButton(ctx), "gui_input": bGUIInput(ctx),
+		"gui_get": bGUIGet(ctx), "gui_set": bGUISet(ctx),
+		"gui_run": bGUIRun(ctx), "gui_close": bGUIClose(ctx),
+		"gui_on_close": bGUIOnClose(ctx), "gui_image": bGUIImage(ctx),
+		"gui_image_button": bGUIImageButton(ctx), "gui_gif": bGUIGif(ctx),
+		"gui_video": bGUIVideo(ctx),
+		"pick_file": bPickFile(ctx), "pick_save": bPickSave(ctx),
+		"pick_folder": bPickFolder(ctx),
+		"alert":       bAlert(ctx), "show_alert": bAlert(ctx),
+		"confirm": bConfirm(ctx), "show_confirm": bConfirm(ctx),
+		"prompt": bPrompt(ctx), "show_prompt": bPrompt(ctx),
+		"get_value": bGUIGet(ctx), "set_text": bGUISet(ctx),
 	}
 }
 
@@ -960,6 +967,7 @@ func isNullValue(v val.Value) bool {
 	_, ok := v.(val.Null)
 	return ok
 }
+func isOpaque(v val.Value) bool  { _, ok := v.(*val.Opaque); return ok }
 func isString(v val.Value) bool  { _, ok := v.(val.Str); return ok }
 func isBoolVal(v val.Value) bool { _, ok := v.(val.Bool); return ok }
 func isList(v val.Value) bool    { _, ok := v.(*val.List); return ok }

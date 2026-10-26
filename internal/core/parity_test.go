@@ -62,6 +62,9 @@ func TestVMParityGolden(t *testing.T) {
 			t.Fatalf("снапшот %s: %v", name, err)
 		}
 		t.Run(strings.TrimSuffix(name, ".json")+"_vm", func(t *testing.T) {
+			if tc.Case == "t12_gui.uni" {
+				t.Skip("кейс с окнами проверяется golden-тестом в сборке без GUI")
+			}
 			if tc.Case == "t10_python.uni" {
 				if _, err := pybridge.FindPython(); err != nil {
 					t.Skipf("python недоступен для py-моста: %v", err)
@@ -95,7 +98,6 @@ func TestVMParityCorpus(t *testing.T) {
 			t.Fatal(err)
 		}
 		t.Run(name, func(t *testing.T) {
-
 			tokens, lerr := lexer.Tokenize(string(src))
 			if lerr != nil {
 				t.Fatalf("%s: лексическая ошибка: %v", name, lerr)

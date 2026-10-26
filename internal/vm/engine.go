@@ -412,7 +412,6 @@ func (e *Engine) runFrame(f *frame) (val.Value, error) {
 
 		case OP_FEND:
 			if f.pending != nil {
-
 				err = f.pending
 				f.pending = nil
 			} else {
@@ -487,7 +486,6 @@ func (e *Engine) failFrame(f *frame, err error) error {
 		ue, isUe := err.(*unierr.Error)
 		if !st.inCatch {
 			if isUe && st.meta.CatchPc >= 0 {
-
 				f.env = interp.NewEnvironment(st.savedEnv)
 				if st.meta.CatchVar >= 0 {
 					f.env.Define(string(st.code.Consts[st.meta.CatchVar].(val.Str)), val.Str(ue.Msg), false)
@@ -498,7 +496,6 @@ func (e *Engine) failFrame(f *frame, err error) error {
 				return nil
 			}
 			if st.meta.FinallyPc >= 0 {
-
 				f.pending = err
 				f.ip = st.meta.FinallyPc
 				return nil

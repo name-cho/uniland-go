@@ -35,6 +35,10 @@ type Null struct{}
 
 var Nul Value = Null{}
 
+type Opaque struct{ V any }
+
+func NewOpaque(v any) Value { return &Opaque{V: v} }
+
 type List struct{ Items []Value }
 
 func NewList(items []Value) Value { return &List{Items: items} }
@@ -214,7 +218,6 @@ func roundHalfEvenRat(r *big.Rat) *big.Int {
 			q.Sub(q, big.NewInt(1))
 		}
 	} else if cmp == 0 {
-
 		if q.Bit(0) == 1 {
 			if num.Sign() > 0 {
 				q.Add(q, big.NewInt(1))

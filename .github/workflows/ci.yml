@@ -26,18 +26,18 @@ jobs:
           python-version: '3.12'
 
       - name: Vet
-        run: go vet ./...
+        run: go vet -tags nogui ./...
 
       - name: Test (golden-снапшоты коммитятся — питон не нужен, кроме t10)
-        run: go test -count=1 ./...
+        run: go test -tags nogui -count=1 ./...
 
-      - name: Test (tree-walk: UNILAND_TREEWALK=1, второй движок)
-        run: go test -count=1 ./...
+      - name: Test tree-walk (UNILAND_TREEWALK=1, второй движок)
+        run: go test -tags nogui -count=1 ./...
         env:
           UNILAND_TREEWALK: '1'
 
       - name: Build
-        run: go build -o uniland-go${{ matrix.os == 'windows-latest' && '.exe' || '' }} .
+        run: go build -tags nogui -o uniland-go${{ matrix.os == 'windows-latest' && '.exe' || '' }} .
 
       - name: Smoke (selftest зелёный)
         run: ./uniland-go${{ matrix.os == 'windows-latest' && '.exe' || '' }} run compat/cases/selftest.uni
@@ -51,5 +51,11 @@ jobs:
           go-version: 'stable'
       - name: Зависимости Fyne (X11/GL)
         run: sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev xorg-dev
-      - name: Build -tags fyne
-        run: go build -tags fyne ./...
+      - name: Build с окнами (cgo)
+        run: go build -o uniland .
+      - name: Окна действительно включены
+        run: go list -f '{{.GoFiles}}' ./internal/gui | grep fyne.go
+      - name: Build без окон (nogui)
+        run: go build -tags nogui -o uniland-nogui .
+      - name: Build без cgo (автозаглушка)
+        run: CGO_ENABLED=0 go build -o uniland-nocgo .

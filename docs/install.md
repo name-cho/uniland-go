@@ -2,7 +2,8 @@
 
 Собрать UniLand можно на Windows, Linux и в Termux. Нужен только Go 1.23
 или новее; Python нужен, только если скрипты используют блоки
-`python { }`, а C-компилятор — только для окон на Fyne.
+`python { }`, а C-компилятор — только для окон на Fyne. Без компилятора
+собирайте с `CGO_ENABLED=0` или `-tags nogui`.
 
 Готовые сборки не публикуются, поэтому все команды ниже собирают бинарник
 из исходников.
@@ -64,7 +65,10 @@ Python для блоков `python { }` ставится с python.org; подо
 Microsoft Store, но её заглушки интерпретатор отфильтровывает, поэтому
 лучше обычный установщик. Проверка: `python --version`.
 
-Окна требуют mingw-w64 и сборки с тегом: `go build -tags fyne -o uniland.exe .`
+Окна требуют mingw-w64: `choco install mingw` или установщик с
+winlibs.com. После установки компилятора обычный `go build -o uniland.exe .`
+соберёт бинарник с окнами. Без компилятора добавьте `CGO_ENABLED=0` (или
+`-tags nogui`) — получится заглушка, а `gui_*` будут возвращать ошибку.
 
 ## Linux
 
@@ -112,13 +116,17 @@ Python для блоков `python { }`: `sudo apt install python3`, `sudo pacma
 UNILAND_PYTHON=/usr/bin/python3.13 uniland run script.uni
 ```
 
-Окна собираются с тегом `fyne`. На Debian и Ubuntu нужны `gcc`,
-`libgl1-mesa-dev` и `xorg-dev`, на Arch — `base-devel` и `libx11`:
+Окна включаются автоматически, если есть cgo и системные библиотеки. На
+Debian и Ubuntu нужны `gcc`, `libgl1-mesa-dev` и `xorg-dev`, на Arch —
+`base-devel` и `libx11`:
 
 ```bash
 sudo apt install gcc libgl1-mesa-dev xorg-dev
-go build -tags fyne -o uniland .
+go build -o uniland .
 ```
+
+Без этих пакетов собирайте с `CGO_ENABLED=0` или `-tags nogui`: тогда
+`gui_*` возвращают ошибку.
 
 ### Arch и пакетный менеджер
 
@@ -160,13 +168,14 @@ package() {
 ## Termux
 
 Termux — это Android, поэтому окон не будет, а всё остальное работает.
+Сборка идёт без cgo:
 
 ```bash
 pkg update
 pkg install golang git
 git clone https://github.com/name-cho/uniland-go.git
 cd uniland-go
-go build -trimpath -ldflags "-s -w" -o "$PREFIX/bin/uniland" .
+CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o "$PREFIX/bin/uniland" .
 uniland -v
 ```
 
@@ -184,8 +193,9 @@ print(x)'
 
 Что важно знать про Termux:
 
-- окна `gui_*` в обычной сборке возвращают ошибку «GUI недоступен в этой
-  сборке», и это ожидаемо: Fyne на Android в Termux не собирается;
+- окон `gui_*` нет: бинарник собран без cgo, поэтому функции возвращают
+  ошибку «GUI недоступен в этой сборке», и это ожидаемо (Fyne в Termux не
+  собирается);
 - доступ к общей памяти телефона открывается командой `termux-setup-storage`,
   после неё скрипты видят `~/storage/shared`;
 - сборка идёт заметно дольше, чем на компьютере, а кэш Go занимает место в

@@ -11,8 +11,6 @@ import (
 	"github.com/name-cho/uniland-go/internal/pybridge"
 )
 
-// TestExamples — примеры из examples/ обязаны исполняться и давать ровно
-// тот вывод, который обещан в docs/guide.md (эталон лежит рядом, .out).
 func TestExamples(t *testing.T) {
 	dir := filepath.Join(testRootDir, "examples")
 	entries, err := os.ReadDir(dir)

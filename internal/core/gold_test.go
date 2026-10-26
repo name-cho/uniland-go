@@ -44,7 +44,7 @@ func TestMain(m *testing.M) {
 	if runtime.GOOS != "windows" {
 		exe = filepath.Join(tmp, "uniland-go")
 	}
-	build := exec.Command("go", "build", "-o", exe, ".")
+	build := exec.Command("go", "build", "-tags", "nogui", "-o", exe, ".")
 	build.Dir = testRootDir
 	build.Stdout = os.Stderr
 	build.Stderr = os.Stderr
@@ -103,16 +103,11 @@ func TestGolden(t *testing.T) {
 			if tc.Stdin != "" {
 				cmd.Stdin = strings.NewReader(tc.Stdin)
 			} else {
-
 				cmd.Stdin = bytes.NewReader(nil)
 			}
 			runErr := cmd.Run()
-			if runErr == nil && len(tc.Stdout)+len(tc.Stderr) == 0 {
-
-			}
 			gotExit := 0
 			if runErr != nil {
-
 				if ee, ok := runErr.(*exec.ExitError); ok {
 					gotExit = ee.ExitCode()
 				} else {
@@ -150,7 +145,6 @@ func TestCliBasics(t *testing.T) {
 	})
 
 	t.Run("check_ok", func(t *testing.T) {
-
 		path := filepath.Join(testRootDir, "compat", "cases", "hello.uni")
 		var ob bytes.Buffer
 		cmd := exec.Command(testExe, "-c", path)
@@ -165,7 +159,6 @@ func TestCliBasics(t *testing.T) {
 	})
 
 	t.Run("check_syntax_error", func(t *testing.T) {
-
 		src := "print(2 +\n{(}"
 		path := filepath.Join(t.TempDir(), "broken.uni")
 		if err := os.WriteFile(path, []byte(src), 0o644); err != nil {
@@ -188,7 +181,6 @@ func TestCliBasics(t *testing.T) {
 	})
 
 	t.Run("run_missing_file", func(t *testing.T) {
-
 		var ob, eb bytes.Buffer
 		cmd := exec.Command(testExe, "run", "nope-definitely-missing.uni")
 		cmd.Stdout = &ob
@@ -203,7 +195,6 @@ func TestCliBasics(t *testing.T) {
 	})
 
 	t.Run("check_missing_file", func(t *testing.T) {
-
 		var ob, eb bytes.Buffer
 		cmd := exec.Command(testExe, "-c", "nope-definitely-missing.uni")
 		cmd.Stdout = &ob

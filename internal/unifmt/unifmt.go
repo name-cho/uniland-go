@@ -52,7 +52,6 @@ func formatWithTokens(src string, tokens []lexer.Token) string {
 		}
 
 		if strings.TrimSpace(content) == "" {
-
 			if len(out) > 0 && out[len(out)-1] != "" {
 				out = append(out, "")
 			}

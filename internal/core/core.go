@@ -85,7 +85,6 @@ func (rt *Runtime) RunSource(source string, debug bool) (int, error) {
 		return 1, asUniErr(err)
 	}
 	if debug {
-
 		fmt.Fprintln(rt.out, "Tokens:")
 		for _, tk := range tokens {
 			fmt.Fprintln(rt.out, "  "+tk.Dump())
@@ -170,7 +169,6 @@ func (r *Repl) Loop() int {
 
 		line, err := r.br.ReadString('\n')
 		if err != nil && line == "" {
-
 			fmt.Fprintln(r.out)
 			break
 		}
@@ -202,7 +200,6 @@ func (r *Repl) Loop() int {
 			continue
 		}
 		if exit {
-
 			break
 		}
 		if echo != "" {

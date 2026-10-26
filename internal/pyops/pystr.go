@@ -34,6 +34,8 @@ func PyStr(v val.Value) string {
 			parts = append(parts, val.PyRepr(kv.K)+": "+val.PyRepr(strForRepr(kv.V)))
 		}
 		return "{" + strings.Join(parts, ", ") + "}"
+	case *val.Opaque:
+		return "<object>"
 	default:
 		return "<function>"
 	}

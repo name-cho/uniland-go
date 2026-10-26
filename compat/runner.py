@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 CASE_TIMEOUT = 30
+MANUAL = {"t11_golang.uni", "t12_gui.uni"}
 
 def parse_args():
     here = Path(__file__).resolve().parent
@@ -45,6 +46,13 @@ def main():
         cases = [c for c in cases if a.filter in c.name]
     if not cases:
         sys.exit(f"Кейсы не найдены в {cases_dir}")
+
+    for case in [c for c in cases if c.name in MANUAL]:
+        print(f"  {case.name:<28} снимок написан вручную, пропуск")
+    cases = [c for c in cases if c.name not in MANUAL]
+    if not cases:
+        print("Нечего снимать: все выбранные кейсы со снимками вручную")
+        return
 
     env = os.environ.copy()
     env["PYTHONPATH"] = str(ref) + (os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else "")

@@ -213,7 +213,6 @@ func bJoin(args []val.Value) (val.Value, error) {
 	}
 	sep, ok := args[1].(val.Str)
 	if !ok {
-
 		return nil, strAttr(args[1], "join")
 	}
 	parts := make([]string, len(ary.Items))
@@ -248,7 +247,6 @@ func bSubstring(args []val.Value) (val.Value, error) {
 	}
 	s, ok := args[0].(val.Str)
 	if !ok {
-
 		return nil, fmt.Errorf("'%s' object is not subscriptable", pyops.TypeName(args[0]))
 	}
 	start, err := pyops.IntOf(args[1])
@@ -1002,7 +1000,6 @@ func asFloatOf(v val.Value) (float64, bool, bool) {
 
 func bMin(args []val.Value) (val.Value, error) {
 	if len(args) == 0 {
-
 		return nil, fmt.Errorf("min expected at least 1 argument, got 0")
 	}
 	seq := args
@@ -1029,7 +1026,6 @@ func bMin(args []val.Value) (val.Value, error) {
 
 func bMax(args []val.Value) (val.Value, error) {
 	if len(args) == 0 {
-
 		return nil, fmt.Errorf("max expected at least 1 argument, got 0")
 	}
 	seq := args

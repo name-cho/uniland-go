@@ -4,5 +4,5 @@
   "exit": 0,
   "stderr": "",
   "stdin": "",
-  "stdout": "catch: GUI недоступен в этой сборке: пересобери с -tags fyne\ncatch: GUI недоступен в этой сборке: пересобери с -tags fyne\ncatch: GUI недоступен в этой сборке: пересобери с -tags fyne\ncatch: GUI недоступен в этой сборке: пересобери с -tags fyne\nпосле gui\n"
+  "stdout": "catch: GUI недоступен в этой сборке: нет cgo или включён тег nogui\ncatch: GUI недоступен в этой сборке: нет cgo или включён тег nogui\ncatch: GUI недоступен в этой сборке: нет cgo или включён тег nogui\ncatch: GUI недоступен в этой сборке: нет cgo или включён тег nogui\ncatch: GUI недоступен в этой сборке: нет cgo или включён тег nogui\ncatch: GUI недоступен в этой сборке: нет cgo или включён тег nogui\nпосле gui\n"
 }
