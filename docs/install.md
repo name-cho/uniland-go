@@ -117,11 +117,12 @@ UNILAND_PYTHON=/usr/bin/python3.13 uniland run script.uni
 ```
 
 Окна включаются автоматически, если есть cgo и системные библиотеки. На
-Debian и Ubuntu нужны `gcc`, `libgl1-mesa-dev` и `xorg-dev`, на Arch —
-`base-devel` и `libx11`:
+Debian и Ubuntu нужны `gcc`, `libgl1-mesa-dev`, `xorg-dev`, `libwayland-dev`
+и `libxkbcommon-dev`, на Arch — `base-devel`, `libx11`, `wayland` и
+`libxkbcommon`:
 
 ```bash
-sudo apt install gcc libgl1-mesa-dev xorg-dev
+sudo apt install gcc libgl1-mesa-dev xorg-dev libwayland-dev libxkbcommon-dev
 go build -o uniland .
 ```
 

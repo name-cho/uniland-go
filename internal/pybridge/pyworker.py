@@ -1,4 +1,14 @@
-import io, json, sys, contextlib, base64
+import io, json, sys, contextlib
+
+def use_utf8(stream, errors):
+    try:
+        stream.reconfigure(encoding="utf-8", errors=errors)
+    except Exception:
+        pass
+
+use_utf8(sys.stdin, "replace")
+use_utf8(sys.stdout, "replace")
+use_utf8(sys.stderr, "replace")
 
 py_ns = {"__name__": "uniland_embedded"}
 _wid = [1000]
@@ -26,7 +36,6 @@ def rpc(op, **kw):
             raise RuntimeError(resp.get("err", "bridge error"))
 
 class UniBridge:
-    """uni.* в python-коде: чтение/запись uniland-глобалов и вызовы."""
 
     def __getattr__(self, key):
         r = rpc("uni_get", k=key)
@@ -37,7 +46,6 @@ class UniBridge:
             del self.__dict__[key]
         except KeyError:
             pass
-        raise_for_set(value)
         object.__setattr__(self, "_setkey", key)
         rpc("uni_set", k=key, v=value)
         object.__delattr__(self, "_setkey")
@@ -53,14 +61,10 @@ class UniBridge:
         r = rpc("uni_call", k=name, args=[enc(a) for a in args])
         return dec(r)
 
-def raise_for_set(value):
-    object.__getattribute__
-
 uni_bridge = UniBridge()
 py_ns["uni"] = uni_bridge
 
 def enc(v):
-    """unicode value → JSON-обертка для моста."""
     if v is None:
         return None
     if v is True:
@@ -83,7 +87,6 @@ def enc(v):
     return {"T": "func"}
 
 def dec(w):
-    """JSON-обертка → значение."""
     if w is None or isinstance(w, (bool, int, float)):
         return w
     if isinstance(w, str):

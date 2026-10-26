@@ -78,6 +78,18 @@ func pythonWorks(py string) bool {
 	return false
 }
 
+func workerEnv() []string {
+	env := os.Environ()
+	out := make([]string, 0, len(env)+2)
+	for _, kv := range env {
+		if strings.HasPrefix(kv, "PYTHONUTF8=") || strings.HasPrefix(kv, "PYTHONIOENCODING=") {
+			continue
+		}
+		out = append(out, kv)
+	}
+	return append(out, "PYTHONUTF8=1", "PYTHONIOENCODING=utf-8")
+}
+
 func (b *Bridge) startLocked() error {
 	if b.started {
 		return nil
@@ -99,6 +111,7 @@ func (b *Bridge) startLocked() error {
 		return err
 	}
 	cmd := exec.Command(py, "-u", b.workerPath)
+	cmd.Env = workerEnv()
 	stdin, err := cmd.StdinPipe()
 	if err != nil {
 		return err

@@ -49,8 +49,8 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: 'stable'
-      - name: Зависимости Fyne (X11/GL)
-        run: sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev xorg-dev
+      - name: Зависимости Fyne (X11/GL/Wayland)
+        run: sudo apt-get update && sudo apt-get install -y libgl1-mesa-dev xorg-dev libwayland-dev libxkbcommon-dev
       - name: Build с окнами (cgo)
         run: go build -o uniland .
       - name: Окна действительно включены

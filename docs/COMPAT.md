@@ -156,6 +156,12 @@ Python-кода перехватывается и печатается в пор
 передаются конвертами вида `{"T": ...}`, большие целые — строкой, объекты
 — списком ключей, чтобы сохранить порядок.
 
+Воркер запускается с `PYTHONUTF8=1` и `PYTHONIOENCODING=utf-8`, а сам
+`pyworker.py` дополнительно переключает `stdin`/`stdout`/`stderr` на UTF-8.
+Без этого на Windows с Python 3.12 обмен строками JSON ломался на не-ASCII
+тексте. Побочный эффект: `open()` в Python-блоках по умолчанию использует
+UTF-8 и на Windows, тогда как эталон берёт кодировку локали.
+
 ## Окна
 
 В эталоне окна рисует tkinter. В Go-версии те же функции `gui_*` собраны на
@@ -166,8 +172,9 @@ Fyne, поэтому внешний вид отличается, а набор �
 `prompt`, `confirm` и алиасы `show_alert`, `show_confirm`, `show_prompt`,
 `get_value`, `set_text`.
 
-Окна требуют cgo: на Windows mingw-w64, на Linux gcc, `libgl1-mesa-dev` и
-`xorg-dev`. В сборке без cgo (`CGO_ENABLED=0`) или с тегом `nogui` функции
+Окна требуют cgo: на Windows mingw-w64, на Linux gcc, `libgl1-mesa-dev`,
+`xorg-dev`, `libwayland-dev` и `libxkbcommon-dev`. В сборке без cgo
+(`CGO_ENABLED=0`) или с тегом `nogui` функции
 остаются в реестре и возвращают ошибку `GUI недоступен в этой сборке: нет
 cgo или включён тег nogui`; её можно поймать через `try/catch`. Контракт заглушки
 зафиксирован кейсом `compat/cases/t12_gui.uni`.
